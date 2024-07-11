@@ -1,4 +1,4 @@
-create table PUBLIC.MASCOTAS
+create table MASCOTAS
 	(
 		ID             BIGINT auto_increment,
 		ESPECIE        CHARACTER VARYING(100) not null,
@@ -10,12 +10,12 @@ create table PUBLIC.MASCOTAS
 			primary key (ID)
 	);
 
-create index PUBLIC.MASCOTAS_ID_INDEX
-	on PUBLIC.MASCOTAS (ID);
-create index PUBLIC.MASCOTAS_RESPONSABLE_INDEX
-	on PUBLIC.MASCOTAS (RESPONSABLE_ID);
+create index MASCOTAS_ID_INDEX
+	on MASCOTAS (ID);
+create index MASCOTAS_RESPONSABLE_INDEX
+	on MASCOTAS (RESPONSABLE_ID);
 
-create table PUBLIC.INGRESOS
+create table INGRESOS
 	(
 		ID             BIGINT auto_increment,
 		F_ALTA         DATE                  not null,
@@ -26,13 +26,13 @@ create table PUBLIC.INGRESOS
 		constraint PK_INGRESOS
 			primary key (ID),
 		constraint FK_INGRESOS_MASCOTAS
-			foreign key (ID_MASCOTA) references PUBLIC.MASCOTAS
+			foreign key (ID_MASCOTA) references MASCOTAS
 	);
 
-create index PUBLIC.INGRESOS_ID_INDEX
-	on PUBLIC.INGRESOS (ID);
-create index PUBLIC.INGRESOS_RESPONSABLE_INDEX
-	on PUBLIC.INGRESOS (RESPONSABLE_ID);
+create index INGRESOS_ID_INDEX
+	on INGRESOS (ID);
+create index INGRESOS_RESPONSABLE_INDEX
+	on INGRESOS (RESPONSABLE_ID);
 
-insert into mascostas values (1, 'Perro', 'Pasor alemán', 4.5, 'GT456DF', '00000042L');
-insert into ingresos values (1, '2024-03-12', '2024-05-10', null, 1, '00000042L');
+insert into MASCOTAS values (1, 'Perro', 'Pasor alemán', 4.5, 'GT456DF', '00000042L');
+insert into INGRESOS values (1, '2024-03-12', '2024-05-10', null, 1, '00000042L');
