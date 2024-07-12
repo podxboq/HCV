@@ -38,9 +38,6 @@ public class Mascota {
 	@Column(name = "RESPONSABLE_ID", nullable = false, length = 20)
 	private String responsableId;
 
-	@OneToMany(mappedBy = "idMascota")
-	private Set<Ingreso> ingresos = new LinkedHashSet<>();
-
 	public Long getId() {
 		return id;
 	}
@@ -87,14 +84,6 @@ public class Mascota {
 
 	public void setResponsableId(String responsableId) {
 		this.responsableId = responsableId;
-	}
-
-	public Set<Ingreso> getIngresos() {
-		return ingresos;
-	}
-
-	public void setIngresos(Set<Ingreso> ingresos) {
-		this.ingresos = ingresos;
 	}
 
 }
