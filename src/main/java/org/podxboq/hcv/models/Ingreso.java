@@ -43,10 +43,6 @@ public class Ingreso {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public LocalDate getFAlta() {
 		return fAlta;
 	}
@@ -76,15 +72,13 @@ public class Ingreso {
 	}
 
 	public void setIdMascota(Mascota idMascota) {
+
 		this.idMascota = idMascota;
+		this.responsableId = idMascota.getResponsableId();
 	}
 
 	public String getResponsableId() {
 		return responsableId;
-	}
-
-	public void setResponsableId(String responsableId) {
-		this.responsableId = responsableId;
 	}
 
 }

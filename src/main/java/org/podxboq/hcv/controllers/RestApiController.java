@@ -8,6 +8,7 @@ import org.podxboq.hcv.repositories.MascotasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 @RestController
@@ -22,9 +23,14 @@ public class RestApiController {
 		return ingresosRepository.findAll();
 	}
 
-	@PostMapping(value = "/ingreso", consumes = "application/json")
-	public Ingreso ingresoAlta(@RequestBody Ingreso ingreso) {
+	@PostMapping("/ingresoalta")
+	//public String ingresoalta(@RequestBody Ingreso ingreso) {
+	public Ingreso ingresoalta() {
 
+		Ingreso ingreso = new Ingreso();
+		Optional<Mascota> mascota = mascotasRepository.findById(1L);
+		ingreso.setFAlta(LocalDate.parse("2024-01-01"));
+		mascota.ifPresent(ingreso::setIdMascota);
 		return ingresosRepository.save(ingreso);
 	}
 
