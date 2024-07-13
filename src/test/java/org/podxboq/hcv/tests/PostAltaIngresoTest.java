@@ -17,7 +17,7 @@ public class PostAltaIngresoTest {
 
 	@Test
 	public void run() {
-		String url = "http://localhost:8080/ingresoalta";
+		String url = "http://localhost:8080/ingreso";
 		RestTemplate restTemplate = new RestTemplate();
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
@@ -33,12 +33,6 @@ public class PostAltaIngresoTest {
 			new HttpEntity<String>(jsonObject.toString(), httpHeaders);
 		String result =
 			restTemplate.postForObject(url, request, String.class);
-		JsonNode root;
-		try {
-			root = objectMapper.readTree(result);
-		} catch (JsonProcessingException e) {
-			throw new RuntimeException(e);
-		}
 
 		assertNotNull("s", result);
 	}

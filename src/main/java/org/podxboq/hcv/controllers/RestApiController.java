@@ -1,6 +1,7 @@
 package org.podxboq.hcv.controllers;
 
 
+import org.json.JSONObject;
 import org.podxboq.hcv.models.Ingreso;
 import org.podxboq.hcv.models.Mascota;
 import org.podxboq.hcv.repositories.IngresosRepository;
@@ -23,14 +24,16 @@ public class RestApiController {
 		return ingresosRepository.findAll();
 	}
 
-	@PostMapping("/ingresoalta")
-	//public String ingresoalta(@RequestBody Ingreso ingreso) {
-	public Ingreso ingresoalta() {
-
+	@PostMapping("/ingreso")
+	public Ingreso ingreso(@RequestBody String json) {
+		JSONObject jsonObject = (new JSONObject(json));
+		int id_mascota = jsonObject.getInt("id_mascota");
+		String f_alta = jsonObject.getString("f_alta");
 		Ingreso ingreso = new Ingreso();
-		Optional<Mascota> mascota = mascotasRepository.findById(1L);
-		ingreso.setFAlta(LocalDate.parse("2024-01-01"));
+		Optional<Mascota> mascota = mascotasRepository.findById((long) id_mascota);
 		mascota.ifPresent(ingreso::setIdMascota);
+		ingreso.setFAlta(LocalDate.parse(f_alta));
+
 		return ingresosRepository.save(ingreso);
 	}
 
