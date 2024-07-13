@@ -1,7 +1,5 @@
 package org.podxboq.hcv.tests;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
@@ -9,7 +7,6 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.client.RestTemplate;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static org.springframework.test.util.AssertionErrors.assertNotNull;
 
@@ -22,7 +19,6 @@ public class PostAltaIngresoTest {
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
 		JSONObject jsonObject = new JSONObject();
-		ObjectMapper objectMapper = new ObjectMapper();
 		try {
 			jsonObject.put("id_mascota", 1);
 			jsonObject.put("f_alta", "2024-01-01");
