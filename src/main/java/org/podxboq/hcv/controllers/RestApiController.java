@@ -9,6 +9,7 @@ import org.podxboq.hcv.models.Mascota;
 import org.podxboq.hcv.repositories.IngresosRepository;
 import org.podxboq.hcv.repositories.MascotasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -31,15 +32,20 @@ public class RestApiController {
 		JSONObject jsonObject = (new JSONObject(json));
 		Long id_mascota = jsonObject.getLong("id_mascota");
 		String f_alta = jsonObject.getString("f_alta");
-		Ingreso ingreso = new Ingreso();
-		ingreso.setIdMascota(id_mascota);
-		ingreso.setFAlta(LocalDate.parse(f_alta));
-
-		return ingresosRepository.save(ingreso);
+		Optional<Mascota> optMascota = mascotasRepository.findById(id_mascota);
+		if (optMascota.isPresent()) {
+			Mascota mascota = optMascota.get();
+			Ingreso ingreso = new Ingreso();
+			ingreso.setIdMascota(id_mascota);
+			ingreso.setFAlta(LocalDate.parse(f_alta));
+			ingreso.setResponsableId(mascota.getResponsableId());
+			return ingresosRepository.save(ingreso);
+		}
+		return null;
 	}
 
 	@PutMapping("/ingreso/{id_mascota}/{id_ingreso}")
-	public Ingreso ingreso(@PathVariable Long id_mascota, @PathVariable Long id_ingreso, @RequestBody String json) {
+	public ResponseEntity<String> ingreso(@PathVariable Long id_mascota, @PathVariable Long id_ingreso, @RequestBody String json) {
 		JSONObject jsonObject = (new JSONObject(json));
 		String f_baja = jsonObject.getString("f_baja");
 		Optional<Ingreso> opIngreso = ingresosRepository.findById(id_ingreso);
@@ -47,49 +53,58 @@ public class RestApiController {
 			Ingreso ingreso = opIngreso.get();
 			ingreso.setFBaja(LocalDate.parse(f_baja));
 			if (ingreso.getIdMascota().equals(id_mascota)) {
-				return ingresosRepository.save(ingreso);
+				ingresosRepository.save(ingreso);
+				return ResponseEntity.ok(new JSONObject(ingreso).toString());
+			} else {
+				return ResponseEntity.badRequest().build();
 			}
 		}
-		return null;
+		return ResponseEntity.notFound().build();
 	}
 
 	@DeleteMapping("/ingreso/{id_ingreso}")
-	public Ingreso ingreso(@PathVariable Long id_ingreso) {
+	public ResponseEntity<String> ingreso(@PathVariable Long id_ingreso) {
 		Optional<Ingreso> opIngreso = ingresosRepository.findById(id_ingreso);
 		if (opIngreso.isPresent()) {
 			Ingreso ingreso = opIngreso.get();
 			ingreso.setFAnula(LocalDate.now());
-			return ingresosRepository.save(ingreso);
+			ingresosRepository.save(ingreso);
+			return ResponseEntity.ok(new JSONObject(ingreso).toString());
 		}
-		return null;
+		return ResponseEntity.notFound().build();
 	}
 
-	@GetMapping("/mascota/{idMascota}")
-	public Optional<Mascota> mascota(@PathVariable Long idMascota) {
-		return mascotasRepository.findById(idMascota);
+	@GetMapping("/mascota/{id_mascota}")
+	public Optional<Mascota> mascota(@PathVariable Long id_mascota) {
+		return mascotasRepository.findById(id_mascota);
 	}
 
-	@GetMapping("/mascota/{idMascota}/ingreso")
-	public Iterable<Ingreso> mascotaIngresos(@PathVariable Long idMascota) {
-		return ingresosRepository.findAllByIdMascota(idMascota);
+	@GetMapping("/mascota/{id_mascota}/ingreso")
+	public Iterable<Ingreso> mascotaIngresos(@PathVariable Long id_mascota) {
+		return ingresosRepository.findAllByIdMascota(id_mascota);
 	}
 
 	@PostMapping("/mascota")
-	public Mascota createMascota(@RequestBody String json) {
+	public ResponseEntity<String> createMascota(@RequestBody String json) {
 		Mascota mascota = null;
 		try {
 			mascota = new ObjectMapper().readValue(json, Mascota.class);
 		} catch (JsonProcessingException e) {
-			throw new RuntimeException(e);
+			return ResponseEntity.badRequest().build();
 		}
-
-		return mascotasRepository.save(mascota);
+		mascotasRepository.save(mascota);
+		return ResponseEntity.ok(new JSONObject(mascota).toString());
 	}
 
 	@DeleteMapping("/mascota/{idMascota}")
-	public Mascota deleteMascota(@PathVariable Long idMascota) {
-		Optional<Mascota> mascota = mascotasRepository.findById(idMascota);
-		mascota.ifPresent(value -> value.setFBaja(LocalDate.now()));
-		return mascotasRepository.save(mascota.get());
+	public ResponseEntity<String> deleteMascota(@PathVariable Long idMascota) {
+		Optional<Mascota> optMascota = mascotasRepository.findById(idMascota);
+		if (optMascota.isPresent()) {
+			Mascota mascota = optMascota.get();
+			mascota.setFBaja(LocalDate.now());
+			mascotasRepository.save(mascota);
+			return ResponseEntity.ok(new JSONObject(mascota).toString());
+		}
+		return ResponseEntity.notFound().build();
 	}
 }

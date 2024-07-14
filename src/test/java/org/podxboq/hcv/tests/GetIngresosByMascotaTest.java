@@ -11,9 +11,7 @@ public class GetIngresosByMascotaTest {
 	@Test
 	public void run() {
 		String url = "http://localhost:8080/mascota/1/ingreso";
-		RestTemplate restTemplate = new RestTemplate();
-
-		HttpEntity<String> result = restTemplate.getForEntity(url, String.class);
+		HttpEntity<String> result = new RestTemplate().getForEntity(url, String.class);
 		assertNotNull("No hay ingresos", result);
 	}
 

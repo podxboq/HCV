@@ -74,6 +74,10 @@ public class Ingreso {
 		this.idMascota = idMascota;
 	}
 
+	public void setResponsableId(String responsableId) {
+		this.responsableId = responsableId;
+	}
+
 	public String getResponsableId() {
 		return responsableId;
 	}

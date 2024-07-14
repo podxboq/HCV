@@ -30,7 +30,7 @@ public class PostAltaIngresoTest {
 		String result =
 			restTemplate.postForObject(url, request, String.class);
 
-		assertNotNull("s", result);
+		assertNotNull("Error", result);
 	}
 
 }
