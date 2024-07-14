@@ -29,37 +29,36 @@ public class RestApiController {
 	@PostMapping("/ingreso")
 	public Ingreso ingreso(@RequestBody String json) {
 		JSONObject jsonObject = (new JSONObject(json));
-		int id_mascota = jsonObject.getInt("id_mascota");
+		Long id_mascota = jsonObject.getLong("id_mascota");
 		String f_alta = jsonObject.getString("f_alta");
 		Ingreso ingreso = new Ingreso();
-		Optional<Mascota> mascota = mascotasRepository.findById((long) id_mascota);
-		mascota.ifPresent(ingreso::setIdMascota);
+		ingreso.setIdMascota(id_mascota);
 		ingreso.setFAlta(LocalDate.parse(f_alta));
 
 		return ingresosRepository.save(ingreso);
 	}
 
-	@PutMapping("/ingreso")
-	public Ingreso ingreso(@RequestBody int id_mascota, @RequestBody int id_ingreso, @RequestBody String json) {
+	@PutMapping("/ingreso/{id_mascota}/{id_ingreso}")
+	public Ingreso ingreso(@PathVariable Long id_mascota, @PathVariable Long id_ingreso, @RequestBody String json) {
 		JSONObject jsonObject = (new JSONObject(json));
 		String f_baja = jsonObject.getString("f_baja");
-		Optional<Ingreso> opIngreso = ingresosRepository.findById((long) id_ingreso);
+		Optional<Ingreso> opIngreso = ingresosRepository.findById(id_ingreso);
 		if (opIngreso.isPresent()) {
 			Ingreso ingreso = opIngreso.get();
 			ingreso.setFBaja(LocalDate.parse(f_baja));
-			if (ingreso.getIdMascota().getId() == id_mascota) {
+			if (ingreso.getIdMascota().equals(id_mascota)) {
 				return ingresosRepository.save(ingreso);
 			}
 		}
 		return null;
 	}
 
-	@DeleteMapping("/ingreso")
-	public Ingreso ingreso(@RequestBody int id_ingreso) {
-		Optional<Ingreso> opIngreso = ingresosRepository.findById((long) id_ingreso);
+	@DeleteMapping("/ingreso/{id_ingreso}")
+	public Ingreso ingreso(@PathVariable Long id_ingreso) {
+		Optional<Ingreso> opIngreso = ingresosRepository.findById(id_ingreso);
 		if (opIngreso.isPresent()) {
 			Ingreso ingreso = opIngreso.get();
-			ingreso.setFBaja(LocalDate.now());
+			ingreso.setFAnula(LocalDate.now());
 			return ingresosRepository.save(ingreso);
 		}
 		return null;
@@ -72,7 +71,7 @@ public class RestApiController {
 
 	@GetMapping("/mascota/{idMascota}/ingreso")
 	public Iterable<Ingreso> mascotaIngresos(@PathVariable Long idMascota) {
-		return ingresosRepository.findAllByMascota(idMascota);
+		return ingresosRepository.findAllByIdMascota(idMascota);
 	}
 
 	@PostMapping("/mascota")
@@ -88,9 +87,9 @@ public class RestApiController {
 	}
 
 	@DeleteMapping("/mascota/{idMascota}")
-	public Optional<Mascota> deleteMascota(@PathVariable Long idMascota) {
+	public Mascota deleteMascota(@PathVariable Long idMascota) {
 		Optional<Mascota> mascota = mascotasRepository.findById(idMascota);
 		mascota.ifPresent(value -> value.setFBaja(LocalDate.now()));
-		return mascotasRepository.findById(idMascota);
+		return mascotasRepository.save(mascota.get());
 	}
 }

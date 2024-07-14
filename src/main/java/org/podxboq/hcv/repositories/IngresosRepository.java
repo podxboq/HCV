@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface IngresosRepository extends CrudRepository<Ingreso, Long> {
 
-	public List<Ingreso> findAllByMascota(Long idMascota);
+	public List<Ingreso> findAllByIdMascota(Long idMascota);
 }

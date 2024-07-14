@@ -1,0 +1,32 @@
+package org.podxboq.hcv.tests;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.junit.jupiter.api.Test;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.web.client.RestTemplate;
+
+import static org.springframework.test.util.AssertionErrors.assertNotNull;
+
+public class PutBajaIngresoTest {
+
+	@Test
+	public void run() {
+		String url = "http://localhost:8080/ingreso/1/1";
+		RestTemplate restTemplate = new RestTemplate();
+		HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+		JSONObject jsonObject = new JSONObject();
+		try {
+			jsonObject.put("f_baja", "2024-06-01");
+		} catch (JSONException e) {
+			throw new RuntimeException(e);
+		}
+		HttpEntity<String> request =
+			new HttpEntity<String>(jsonObject.toString(), httpHeaders);
+		restTemplate.put(url, request);
+	}
+
+}

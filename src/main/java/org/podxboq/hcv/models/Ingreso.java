@@ -29,10 +29,8 @@ public class Ingreso {
 	private LocalDate fAnula;
 
 	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@OnDelete(action = OnDeleteAction.RESTRICT)
-	@JoinColumn(name = "ID_MASCOTA", nullable = false)
-	private Mascota idMascota;
+	@Column(name = "ID_MASCOTA", nullable = false)
+	private Long idMascota;
 
 	@Size(max = 20)
 	@NotNull
@@ -67,14 +65,13 @@ public class Ingreso {
 		this.fAnula = fAnula;
 	}
 
-	public Mascota getIdMascota() {
+	public Long getIdMascota() {
 		return idMascota;
 	}
 
-	public void setIdMascota(Mascota idMascota) {
+	public void setIdMascota(Long idMascota) {
 
 		this.idMascota = idMascota;
-		this.responsableId = idMascota.getResponsableId();
 	}
 
 	public String getResponsableId() {
