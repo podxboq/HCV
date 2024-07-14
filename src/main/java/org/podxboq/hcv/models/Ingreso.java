@@ -82,4 +82,8 @@ public class Ingreso {
 		return responsableId;
 	}
 
+	public Estados.Ingreso getEstado() {
+		return (this.fAnula == null) ? ((this.fBaja == null) ? Estados.Ingreso.ALTA : Estados.Ingreso.BAJA) : Estados.Ingreso.ANULADA;
+	}
+
 }

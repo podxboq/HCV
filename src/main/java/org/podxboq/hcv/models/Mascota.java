@@ -5,8 +5,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "MASCOTAS", indexes = {
@@ -96,5 +94,9 @@ public class Mascota {
 
 	public void setFBaja(LocalDate fBaja) {
 		this.fBaja = fBaja;
+	}
+
+	public Estados.Mascota getEstado(){
+		return (this.fBaja == null) ? Estados.Mascota.ALTA : Estados.Mascota.BAJA;
 	}
 }
