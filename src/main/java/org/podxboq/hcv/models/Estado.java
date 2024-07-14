@@ -1,6 +1,6 @@
 package org.podxboq.hcv.models;
 
-public class Estados {
+public class Estado {
 
 	public enum Mascota {
 		ALTA,

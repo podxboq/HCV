@@ -3,8 +3,6 @@ package org.podxboq.hcv.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDate;
 
@@ -82,8 +80,8 @@ public class Ingreso {
 		return responsableId;
 	}
 
-	public Estados.Ingreso getEstado() {
-		return (this.fAnula == null) ? ((this.fBaja == null) ? Estados.Ingreso.ALTA : Estados.Ingreso.BAJA) : Estados.Ingreso.ANULADA;
+	public Estado.Ingreso getEstado() {
+		return (this.fAnula == null) ? ((this.fBaja == null) ? Estado.Ingreso.ALTA : Estado.Ingreso.BAJA) : Estado.Ingreso.ANULADA;
 	}
 
 }

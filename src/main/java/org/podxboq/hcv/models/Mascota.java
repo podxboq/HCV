@@ -96,7 +96,7 @@ public class Mascota {
 		this.fBaja = fBaja;
 	}
 
-	public Estados.Mascota getEstado(){
-		return (this.fBaja == null) ? Estados.Mascota.ALTA : Estados.Mascota.BAJA;
+	public Estado.Mascota getEstado(){
+		return (this.fBaja == null) ? Estado.Mascota.ALTA : Estado.Mascota.BAJA;
 	}
 }
