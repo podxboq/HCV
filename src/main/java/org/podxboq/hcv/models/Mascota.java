@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+import java.time.LocalDate;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -37,6 +38,9 @@ public class Mascota {
 	@NotNull
 	@Column(name = "RESPONSABLE_ID", nullable = false, length = 20)
 	private String responsableId;
+
+	@Column(name = "F_BAJA")
+	private LocalDate fBaja;
 
 	public Long getId() {
 		return id;
@@ -86,4 +90,11 @@ public class Mascota {
 		this.responsableId = responsableId;
 	}
 
+	public LocalDate getFBaja() {
+		return fBaja;
+	}
+
+	public void setFBaja(LocalDate fBaja) {
+		this.fBaja = fBaja;
+	}
 }
