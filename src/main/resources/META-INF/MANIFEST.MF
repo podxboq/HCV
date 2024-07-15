@@ -1,0 +1,43 @@
+Manifest-Version: 1.0
+Main-Class: org.podxboq.hcv.HcvApplication
+Class-Path: jakarta.validation-api-3.0.2.jar spring-boot-actuator-3.3.1.
+ jar jakarta.ws.rs-api-3.1.0.jar h2-2.2.224.jar hibernate-core-6.5.2.Fin
+ al.jar osgi-resource-locator-1.0.3.jar hk2-runlevel-3.0.6.jar tomcat-em
+ bed-core-10.1.25.jar spring-jcl-6.1.10.jar spring-boot-autoconfigure-3.
+ 3.1.jar jakarta.annotation-api-2.1.1.jar hk2-utils-3.0.6.jar spring-boo
+ t-starter-logging-3.3.1.jar micrometer-observation-1.13.1.jar log4j-api
+ -2.23.1.jar hk2-locator-3.0.6.jar spring-aop-6.1.10.jar jersey-bean-val
+ idation-3.1.7.jar jersey-container-servlet-core-3.1.7.jar spring-boot-s
+ tarter-tomcat-3.3.1.jar spring-web-6.1.10.jar jersey-entity-filtering-3
+ .1.7.jar jackson-databind-2.17.1.jar class-model-3.0.6.jar istack-commo
+ ns-runtime-4.1.2.jar tomcat-embed-websocket-10.1.25.jar expressly-5.0.0
+ .jar slf4j-api-2.0.13.jar micrometer-commons-1.13.1.jar byte-buddy-1.14
+ .17.jar spring-boot-starter-validation-3.3.1.jar spring-data-jpa-3.3.1.
+ jar spring-boot-starter-3.3.1.jar hk2-api-3.0.6.jar jaxb-runtime-4.0.5.
+ jar asm-commons-9.6.jar spring-boot-starter-data-jpa-3.3.1.jar jboss-lo
+ gging-3.5.3.Final.jar jersey-spring6-3.1.7.jar HdrHistogram-2.2.2.jar j
+ ersey-container-servlet-3.1.7.jar tomcat-embed-el-10.1.25.jar jersey-me
+ dia-json-jackson-3.1.7.jar jakarta.transaction-api-2.0.1.jar spring-exp
+ ression-6.1.10.jar spring-webmvc-6.1.10.jar snakeyaml-2.2.jar jersey-cl
+ ient-3.1.7.jar spring-boot-starter-jdbc-3.3.1.jar jackson-module-parame
+ ter-names-2.17.1.jar txw2-4.0.5.jar spring-boot-starter-web-3.3.1.jar j
+ ersey-common-3.1.7.jar spring-aspects-6.1.10.jar jersey-hk2-3.1.7.jar h
+ k2-core-3.0.6.jar micrometer-core-1.13.1.jar jakarta.inject-api-2.0.1.j
+ ar spring-boot-actuator-autoconfigure-3.3.1.jar LatencyUtils-2.0.3.jar 
+ logback-core-1.5.6.jar log4j-to-slf4j-2.23.1.jar hibernate-validator-8.
+ 0.1.Final.jar spring-tx-6.1.10.jar spring-bridge-3.0.6.jar classmate-1.
+ 7.0.jar angus-activation-2.0.2.jar micrometer-jakarta9-1.13.1.jar aspec
+ tjweaver-1.9.22.jar spring-core-6.1.10.jar spring-boot-starter-json-3.3
+ .1.jar aopalliance-repackaged-3.0.6.jar HikariCP-5.1.0.jar spring-boot-
+ starter-jersey-3.3.1.jar jakarta.persistence-api-3.1.0.jar spring-boot-
+ 3.3.1.jar jackson-datatype-jdk8-2.17.1.jar javassist-3.30.2-GA.jar spri
+ ng-jdbc-6.1.10.jar jaxb-core-4.0.5.jar spring-data-commons-3.3.1.jar hi
+ bernate-commons-annotations-6.0.6.Final.jar jackson-annotations-2.17.1.
+ jar jackson-core-2.17.1.jar jackson-datatype-jsr310-2.17.1.jar hk2-3.0.
+ 6.jar jul-to-slf4j-2.0.13.jar jersey-server-3.1.7.jar jackson-module-ja
+ karta-xmlbind-annotations-2.17.1.jar spring-beans-6.1.10.jar jandex-3.1
+ .2.jar logback-classic-1.5.6.jar jakarta.activation-api-2.1.3.jar sprin
+ g-context-6.1.10.jar antlr4-runtime-4.13.0.jar json-20240303.jar jakart
+ a.xml.bind-api-4.0.2.jar spring-orm-6.1.10.jar spring-boot-starter-aop-
+ 3.3.1.jar spring-boot-starter-actuator-3.3.1.jar
+

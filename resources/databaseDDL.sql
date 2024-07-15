@@ -6,6 +6,7 @@ create table MASCOTAS
 		EDAD           INTEGER,
 		CODIGO         CHARACTER VARYING(10),
 		RESPONSABLE_ID CHARACTER VARYING(20)  not null,
+		F_BAJA         DATE,
 		constraint PK_MASCOTAS
 			primary key (ID)
 	);
